@@ -84,6 +84,10 @@ const domains = ["Toutes les disciplines", ...new Set(resources.map((r) => r.dom
   search?.addEventListener("input", filterResources);
   domain?.addEventListener("change", filterResources);
   type?.addEventListener("change", filterResources);
+
+  const initialQuery = new URLSearchParams(window.location.search).get("q");
+  if (search && initialQuery) search.value = initialQuery;
+  filterResources();
 </script>
 
 <style>
