@@ -1,0 +1,175 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const pillars = [
+  { number: "01", title: "Explorer", text: "Parcourez des ressources organisées par disciplines, sujets et formats." },
+  { number: "02", title: "Apprendre", text: "Suivez des parcours progressifs et composez vos propres collections." },
+  { number: "03", title: "Contribuer", text: "Partagez des ressources utiles et participez à leur amélioration." },
+];
+const categories = ["Sciences & recherche", "Géomatique & données", "Technologies & numérique", "Éducation & pédagogie", "Culture & langues", "Environnement"];
+---
+<BaseLayout>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/" aria-label="KEU DIRU, accueil">
+        <span class="brand-mark">K</span>
+        <span>KEU <strong>DIRU</strong><small>La connaissance en partage</small></span>
+      </a>
+      <nav aria-label="Navigation principale">
+        <a href="#explorer">Explorer</a>
+        <a href="#parcours">Parcours</a>
+        <a href="#communaute">Communauté</a>
+      </nav>
+      <a class="nav-cta" href="#explorer">Découvrir <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Bibliothèque ouverte · Savoirs partagés</p>
+          <h1>Les bonnes ressources.<br /><em>Au bon endroit.</em></h1>
+          <p class="hero-lead">Découvrez, organisez et partagez des connaissances pour apprendre, rechercher et créer — ensemble.</p>
+          <form class="search" action="/explorer" method="get" role="search">
+            <span aria-hidden="true">⌕</span>
+            <label class="sr-only" for="q">Rechercher une ressource</label>
+            <input id="q" name="q" type="search" placeholder="Que souhaitez-vous apprendre ?" />
+            <button type="submit">Rechercher</button>
+          </form>
+          <div class="hero-meta"><span class="live-dot"></span> Un espace ouvert à toutes les disciplines <span class="meta-separator">·</span> FR / EN</div>
+        </div>
+        <div class="hero-art" aria-label="Illustration abstraite de connaissances reliées">
+          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+          <div class="orbit-node node-a">Données</div>
+          <div class="orbit-node node-b">Idées</div>
+          <div class="orbit-node node-c">Savoirs</div>
+          <div class="core"><span>KEU</span><strong>DIRU</strong><small>LEARN · SHARE · GROW</small></div>
+          <span class="spark spark-a">✳</span><span class="spark spark-b">✦</span>
+        </div>
+      </div>
+      <div class="hero-bottom container"><span>CONNAISSANCES EN MOUVEMENT</span><span>01 — DÉCOUVRIR / 02 — COMPRENDRE / 03 — TRANSMETTRE</span></div>
+    </section>
+
+    <section class="section container" id="explorer">
+      <div class="section-heading">
+        <div><p class="eyebrow">Un univers de ressources</p><h2>Explorez sans frontières.</h2></div>
+        <p>Des contenus sélectionnés et organisés pour vous aider à trouver ce qui fait avancer vos projets.</p>
+      </div>
+      <div class="category-grid">
+        {categories.map((category, index) => (
+          <a class="category-card" href="/explorer">
+            <span class="category-index">0{index + 1}</span>
+            <span class="category-title">{category}</span>
+            <span class="category-arrow" aria-hidden="true">↗</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="feature-band" id="parcours">
+      <div class="container feature-grid">
+        <div><p class="eyebrow">Plus qu'un catalogue</p><h2>Transformez la curiosité en progression.</h2></div>
+        <p>Les collections rassemblent les ressources autour d'un thème. Les parcours les organisent en étapes pour vous guider vers un nouvel objectif.</p>
+        <a class="light-link" href="#communaute">Découvrir l'approche <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+    <section class="section container" id="communaute">
+      <div class="section-heading">
+        <div><p class="eyebrow">Construisons ensemble</p><h2>Un savoir vivant, grâce à vous.</h2></div>
+        <p>KEU DIRU grandit avec les contributions de celles et ceux qui découvrent, documentent et partagent des ressources utiles.</p>
+      </div>
+      <div class="pillar-grid">
+        {pillars.map((pillar) => (
+          <article class="pillar">
+            <span>{pillar.number}</span><h3>{pillar.title}</h3><p>{pillar.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a class="brand brand-footer" href="/"><span class="brand-mark">K</span><span>KEU <strong>DIRU</strong><small>La connaissance en partage</small></span></a>
+      <p>Une bibliothèque communautaire, ouverte et plurielle.</p>
+      <span>© {new Date().getFullYear()} KEU DIRU</span>
+    </div>
+  </footer>
+</BaseLayout>
+
+<style>
+  .site-header { background:#173d2b; color:#fff; }
+  .nav { min-height:82px; display:flex; align-items:center; justify-content:space-between; gap:28px; }
+  .brand { display:flex; align-items:center; gap:11px; font-size:1.02rem; letter-spacing:.08em; font-weight:500; }
+  .brand strong { font-weight:900; }
+  .brand small { display:block; font-size:.58rem; letter-spacing:.04em; color:#b8c9bd; margin-top:3px; }
+  .brand-mark { display:grid; place-items:center; width:39px; height:39px; border:1px solid #d6a64b; color:#f0c36e; border-radius:12px 12px 12px 3px; font-weight:900; font-size:1.2rem; }
+  nav { display:flex; gap:32px; color:#d5e1d8; font-size:.88rem; }
+  nav a:hover { color:#f0c36e; }
+  .nav-cta { border:1px solid #789482; border-radius:999px; padding:11px 17px; font-size:.85rem; }
+  .nav-cta span { color:#f0c36e; margin-left:8px; }
+  .hero { color:#fff; background:radial-gradient(ellipse at 80% 45%,#285b3d 0%,#173d2b 48%,#102e20 100%); overflow:hidden; }
+  .hero-grid { display:grid; grid-template-columns:1.08fr .92fr; align-items:center; min-height:560px; padding-block:70px 52px; }
+  .hero-copy { max-width:610px; position:relative; z-index:1; }
+  .hero .eyebrow { color:#e6bd6b; }
+  h1 { font-size:clamp(3rem,6.4vw,5.6rem); letter-spacing:-.065em; line-height:.99; margin:24px 0; font-weight:750; }
+  h1 em { color:#e8bd6c; font-family:Georgia,serif; font-weight:400; }
+  .hero-lead { max-width:500px; color:#d2ded5; font-size:1.08rem; line-height:1.75; }
+  .search { display:flex; align-items:center; gap:12px; background:#fff; padding:7px 8px 7px 17px; border-radius:12px; margin-top:31px; max-width:540px; color:#294233; box-shadow:0 16px 50px #071d1433; }
+  .search > span { font-size:1.5rem; color:#66816f; }
+  .search input { min-width:0; flex:1; border:0; outline:0; color:#1d3024; background:transparent; font-size:.9rem; }
+  .search button { border:0; border-radius:8px; padding:13px 17px; background:#e9bd6b; color:#1d3426; font-weight:750; cursor:pointer; }
+  .hero-meta { margin-top:18px; color:#b6c9bb; font-size:.78rem; }
+  .live-dot { display:inline-block; width:7px; height:7px; border-radius:50%; background:#e9bd6b; margin-right:8px; }
+  .meta-separator { margin-inline:8px; color:#718d7a; }
+  .hero-art { height:400px; position:relative; display:grid; place-items:center; }
+  .orbit { position:absolute; border:1px solid #8da99544; border-radius:50%; transform:rotate(-28deg); }
+  .orbit-one { width:350px; height:250px; }
+  .orbit-two { width:260px; height:360px; transform:rotate(52deg); }
+  .core { width:170px; height:170px; border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; background:linear-gradient(145deg,#f0cf8d,#d8a84f); color:#173d2b; box-shadow:0 0 0 13px #e6bd6b18,0 20px 80px #071b13aa; transform:rotate(-8deg); }
+  .core span { font-size:.9rem; letter-spacing:.25em; }.core strong { font-size:2rem; letter-spacing:.06em; }.core small { font-size:.48rem; letter-spacing:.14em; margin-top:8px; }
+  .orbit-node { position:absolute; border:1px solid #789a83; background:#1e4a33; color:#e5eee7; border-radius:999px; padding:10px 16px; font-size:.78rem; box-shadow:0 8px 30px #0b2419aa; }
+  .node-a { top:55px; left:18%; }.node-b { right:4%; top:47%; }.node-c { bottom:45px; left:20%; }
+  .spark { position:absolute; color:#e9bd6b; }.spark-a { top:56px; right:22%; font-size:1.6rem; }.spark-b { bottom:58px; right:20%; font-size:1.2rem; }
+  .hero-bottom { display:flex; justify-content:space-between; padding-block:17px 22px; border-top:1px solid #ffffff20; color:#91a99a; font-size:.62rem; letter-spacing:.14em; }
+  .section { padding-block:100px; }
+  .section-heading { display:flex; justify-content:space-between; align-items:end; gap:40px; margin-bottom:38px; }
+  .section-heading h2,.feature-grid h2 { font-size:clamp(2rem,4vw,3.3rem); letter-spacing:-.05em; line-height:1.08; margin:12px 0 0; color:#193c2a; }
+  .section-heading > p { max-width:390px; color:#6d7b71; line-height:1.7; margin:0 0 4px; }
+  .category-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:13px; }
+  .category-card { min-height:150px; position:relative; display:flex; flex-direction:column; justify-content:space-between; padding:21px; border:1px solid #e1e7df; background:#fff; border-radius:12px; transition:transform .2s,border-color .2s; }
+  .category-card:hover { transform:translateY(-3px); border-color:#9db5a2; }
+  .category-index { color:#8a9a8d; font-size:.72rem; letter-spacing:.12em; }
+  .category-title { font-weight:750; font-size:1.08rem; color:#254632; }
+  .category-arrow { position:absolute; right:20px; bottom:19px; color:#b58a42; }
+  .feature-band { background:#e9eee7; padding-block:72px; }
+  .feature-grid { display:grid; grid-template-columns:1.1fr 1fr auto; gap:35px; align-items:center; }
+  .feature-grid h2 { max-width:480px; }
+  .feature-grid > p { color:#607065; line-height:1.8; }
+  .light-link { white-space:nowrap; padding:13px 17px; background:#173d2b; color:#fff; border-radius:999px; font-size:.82rem; }
+  .light-link span { color:#e9bd6b; margin-left:8px; }
+  .pillar-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  .pillar { padding:28px; background:#fff; border:1px solid #e2e8e1; border-radius:12px; }
+  .pillar > span { color:#b58a42; font-size:.75rem; font-weight:800; letter-spacing:.12em; }
+  .pillar h3 { color:#1d422e; font-size:1.35rem; margin:25px 0 9px; }
+  .pillar p { color:#728076; line-height:1.7; margin:0; }
+  .footer { background:#123322; color:#dce7df; }
+  .footer-inner { min-height:115px; display:flex; justify-content:space-between; align-items:center; gap:20px; }
+  .footer-inner p,.footer-inner > span { color:#9eb2a4; font-size:.78rem; }
+  .brand-footer small { color:#9eb2a4; }
+  .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+  @media(max-width:800px) {
+    nav { display:none; }.hero-grid { grid-template-columns:1fr; padding-top:65px; }.hero-art { height:320px; margin-top:25px; }
+    .section-heading,.feature-grid { display:block; }.section-heading > p { margin-top:18px; }.feature-grid > p { margin-block:22px; }
+    .category-grid { grid-template-columns:repeat(2,1fr); }.hero-bottom span:last-child { display:none; }
+  }
+  @media(max-width:520px) {
+    .container { width:min(100% - 30px,1160px); }.nav { min-height:70px; }.nav-cta { padding:9px 12px; }
+    h1 { font-size:3.2rem; }.hero-grid { min-height:auto; }.hero-art { transform:scale(.85); margin-inline:-30px; }
+    .search { gap:8px; padding-left:12px; }.search button { padding:12px 10px; font-size:.78rem; }
+    .section { padding-block:70px; }.category-grid,.pillar-grid { grid-template-columns:1fr; }.category-card { min-height:125px; }
+    .footer-inner { padding-block:24px; flex-wrap:wrap; }.footer-inner p { order:3; width:100%; }
+  }
+</style>
