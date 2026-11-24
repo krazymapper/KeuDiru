@@ -22,6 +22,24 @@ KEU DIRU facilite la découverte, l'organisation et le partage de ressources uti
 
 Astro, TypeScript, React pour l'interactivité, Tailwind CSS, Zod, Supabase (PostgreSQL/Auth/Storage) et GitHub Actions. Ces choix sont une cible et ne signifient pas que ces composants sont déjà implémentés.
 
+## Développement local
+
+Prérequis : Node.js 22. Après clonage :
+
+```bash
+npm install
+npm run dev
+```
+
+Contrôles avant contribution :
+
+```bash
+npm run check
+npm run build
+```
+
+La configuration de Tailwind CSS 4 est intégrée via le plugin Vite officiel. React sera ajouté lorsque les premiers composants interactifs le nécessiteront.
+
 ## Documentation
 
 - `01_CONSOLIDATION_ORIGINE_REGLES_METIER.md`
