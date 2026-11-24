@@ -21,7 +21,7 @@ Le MVP combine une bibliothèque éditoriale et un dashboard : catalogue, recher
 
 Au moment du premier contrôle, le dépôt était public et vide. À la suite du rétablissement des autorisations, le README a été créé et relu sur la branche `main`.
 
-Les deux documents de référence sont ajoutés séparément dans les commits suivants. Aucun code applicatif, projet Supabase, schéma de base, déploiement ou workflow CI/CD n'est confirmé comme existant à ce stade.
+Les deux documents de référence sont publiés. Un premier squelette Astro + TypeScript + Tailwind CSS 4 est également commité : configuration, layout partagé, page d'accueil initiale, variables d'environnement d'exemple et workflow CI. Le workflow GitHub Actions a été déclenché, mais son résultat final n'a pas encore été vérifié. Aucun projet Supabase, schéma de base, authentification ou déploiement n'est confirmé comme existant.
 
 ## 4. Décisions confirmées
 
@@ -48,11 +48,11 @@ Les deux documents de référence sont ajoutés séparément dans les commits su
 
 GitHub Pages ne fournit pas de backend serveur. Si l'hébergement statique est retenu, le frontend devra appeler Supabase ou une autre API externe.
 
-## 6. Ce qu'il ne faut pas supposer
+## 6. Socle technique présent dans le dépôt\n\n- `package.json` : scripts de développement, vérification et build ; Astro 7, TypeScript, Tailwind CSS 4 et outil de vérification Astro.\n- `astro.config.mjs` : configuration Astro et plugin Vite Tailwind.\n- `tsconfig.json` : configuration TypeScript stricte.\n- `src/layouts/BaseLayout.astro` : layout commun et métadonnées de base.\n- `src/pages/index.astro` : première page d'accueil de présentation, avec navigation, recherche visuelle, catégories et sections de découverte. Le formulaire de recherche pointe vers `/explorer`, route qui reste à construire.\n- `src/styles/global.css` : base globale.\n- `.env.example` : variables publiques Supabase en exemple, sans secret.\n- `.github/workflows/ci.yml` : installation des dépendances, vérification Astro et build sur push/PR vers main.\n- `.nvmrc` : ligne Node 22.\n\nReact n'est pas encore installé : l'ajouter lorsque des composants réellement interactifs le justifieront. Aucun composant React n'est nécessaire pour la première page statique.\n\n## 7. Ce qu'il ne faut pas supposer
 
 Ne pas supposer que les tables SQL, RLS, authentification, rôles, déploiement, domaine ou licences sont déjà configurés. Ne jamais inventer un résultat de test ou un état d'avancement. Ne jamais inscrire de secrets dans le dépôt ou ce document.
 
-## 7. Arborescence technique cible
+## 8. Arborescence technique cible
 
 ```text
 KEU-DIRU/
@@ -90,7 +90,7 @@ KEU-DIRU/
 
 Cette arborescence est une cible, pas l'inventaire du dépôt.
 
-## 8. Modèle de données envisagé
+## 9. Modèle de données envisagé
 
 `profiles`, `disciplines`, `topics`, `resource_types`, `resources`, `resource_translations`, `resource_topics`, `tags`, `resource_tags`, `collections`, `collection_items`, `learning_paths`, `learning_path_steps`, `favorites`, `contributions`, `contribution_reviews`, `learning_progress`.
 
@@ -98,7 +98,7 @@ Principes : une ressource peut être liée à plusieurs sujets et traductions ; 
 
 Le schéma physique doit définir clés, relations, contraintes, index, statuts, règles de suppression et RLS avant production.
 
-## 9. Flux métier
+## 10. Flux métier
 
 ### Consultation
 Visiteur → catalogue public → recherche/filtres → fiche ressource → collection ou parcours. La consultation ne doit pas imposer une inscription.
@@ -109,7 +109,7 @@ Membre connecté → formulaire → validation → détection de doublon potenti
 ### Favoris et progression
 Membre connecté → favoris ou suivi d'un parcours → enregistrement associé à son compte. Un membre ne doit pas lire ou modifier les données privées d'un autre.
 
-## 10. Sécurité incontournable
+## 11. Sécurité incontournable
 
 - Activer et tester RLS sur toutes les tables exposées.
 - Définir des politiques pour visiteurs, membres, éditeurs, modérateurs et administrateurs.
@@ -119,11 +119,11 @@ Membre connecté → favoris ou suivi d'un parcours → enregistrement associé 
 - Tester les accès non autorisés.
 - Prévoir sauvegarde et restauration avant le lancement.
 
-## 11. Licences envisagées
+## 12. Licences envisagées
 
 À confirmer avant publication : code MIT ; documentation originale CC BY 4.0 ; ressources externes sous leurs licences et conditions propres.
 
-## 12. Feuille de route
+## 13. Feuille de route
 
 | Phase | Travail | Résultat attendu |
 |---|---|---|
@@ -138,7 +138,7 @@ Membre connecté → favoris ou suivi d'un parcours → enregistrement associé 
 
 Objectifs indicatifs : 12 disciplines, 100 ressources validées, 5 collections, 3 parcours, interface FR/EN, recherche, filtres, modération et PWA.
 
-## 13. Actions immédiates
+## 14. Actions immédiates
 
 1. Vérifier l'état du dépôt et des branches avant chaque modification.
 2. Vérifier si un projet Supabase existe avant d'en créer un.
@@ -160,7 +160,7 @@ npm install -D vitest @playwright/test
 
 Ne pas exécuter ces commandes dans un dossier contenant déjà du travail sans inspection préalable.
 
-## 14. Variables d'environnement
+## 15. Variables d'environnement
 
 Exemple indicatif :
 
@@ -171,11 +171,11 @@ PUBLIC_SUPABASE_ANON_KEY=
 
 La clé publique ne doit être utilisée côté navigateur qu'avec des politiques RLS correctes. La clé `service_role` ne doit jamais être exposée au client.
 
-## 15. Git et collaboration
+## 16. Git et collaboration
 
 Branches proposées : `main` pour la version stable, `develop` pour l'intégration, `feature/*` pour les fonctionnalités et `fix/*` pour les corrections. Utiliser des pull requests, revues et contrôles automatisés. Ne jamais pousser de secrets ou de données personnelles.
 
-## 16. Consignes aux personnes et IA qui reprennent le projet
+## 17. Consignes aux personnes et IA qui reprennent le projet
 
 1. Lire les deux documents de référence avant toute modification structurante.
 2. Répondre en français par défaut.
@@ -186,7 +186,7 @@ Branches proposées : `main` pour la version stable, `develop` pour l'intégrati
 7. Mettre à jour ce relais à chaque jalon : date, décisions, fichiers, tests, blocages et prochaine action.
 8. Ne jamais inscrire de secrets ou données personnelles dans la documentation.
 
-## 17. Modèle de mise à jour
+## 18. Modèle de mise à jour
 
 ```markdown
 ### Mise à jour — AAAA-MM-JJ
@@ -216,7 +216,7 @@ Branches proposées : `main` pour la version stable, `develop` pour l'intégrati
 - 
 ```
 
-## 18. État au moment de la rédaction
+## 19. État au moment de la rédaction
 
 - Dépôt officiel confirmé : `krazymapper/KeuDiru`.
 - README créé et relu sur `main`.
