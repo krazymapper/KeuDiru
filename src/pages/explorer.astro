@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
+const base = import.meta.env.BASE_URL;
+
 const resources = [
   { title: "OpenStreetMap Wiki", type: "Documentation", domain: "Géomatique & données", language: "Multilingue", description: "Documentation collaborative pour comprendre et contribuer au projet cartographique OpenStreetMap.", url: "https://wiki.openstreetmap.org/" },
   { title: "Documentation QGIS", type: "Documentation", domain: "Géomatique & données", language: "Multilingue", description: "Guides officiels pour apprendre à utiliser QGIS, du niveau débutant aux fonctions avancées.", url: "https://docs.qgis.org/" },
@@ -14,9 +16,9 @@ const domains = ["Toutes les disciplines", ...new Set(resources.map((r) => r.dom
 <BaseLayout title="Explorer les ressources — KEU DIRU" description="Explorez des ressources sélectionnées dans le catalogue de démonstration KEU DIRU.">
   <header class="topbar">
     <div class="container nav">
-      <a class="brand" href="/"><span class="brand-mark">K</span><span>KEU <strong>DIRU</strong><small>La connaissance en partage</small></span></a>
-      <nav><a href="/">Accueil</a><a class="active" href="/explorer">Explorer</a><a href="/#parcours">Parcours</a></nav>
-      <a class="back-home" href="/">Retour à l'accueil ↗</a>
+      <a class="brand" href={base}><span class="brand-mark">K</span><span>KEU <strong>DIRU</strong><small>La connaissance en partage</small></span></a>
+      <nav><a href={base}>Accueil</a><a class="active" href={`${base}explorer/`}>Explorer</a><a href="/#parcours">Parcours</a></nav>
+      <a class="back-home" href={base}>Retour à l'accueil ↗</a>
     </div>
   </header>
   <main class="container explorer">
@@ -51,7 +53,7 @@ const domains = ["Toutes les disciplines", ...new Set(resources.map((r) => r.dom
     </div>
     <p id="empty-state" class="empty-state" hidden>Aucune ressource ne correspond à votre recherche. Essayez d'autres mots-clés ou filtres.</p>
   </main>
-  <footer class="footer"><div class="container footer-inner"><a class="brand" href="/"><span class="brand-mark">K</span><span>KEU <strong>DIRU</strong><small>La connaissance en partage</small></span></a><span>© {new Date().getFullYear()} KEU DIRU</span></div></footer>
+  <footer class="footer"><div class="container footer-inner"><a class="brand" href={base}><span class="brand-mark">K</span><span>KEU <strong>DIRU</strong><small>La connaissance en partage</small></span></a><span>© {new Date().getFullYear()} KEU DIRU</span></div></footer>
 </BaseLayout>
 
 <script>
