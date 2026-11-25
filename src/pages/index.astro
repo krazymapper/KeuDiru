@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
+const base = import.meta.env.BASE_URL;
+
 const pillars = [
   { number: "01", title: "Explorer", text: "Parcourez des ressources organisées par disciplines, sujets et formats." },
   { number: "02", title: "Apprendre", text: "Suivez des parcours progressifs et composez vos propres collections." },
@@ -11,7 +13,7 @@ const categories = ["Sciences & recherche", "Géomatique & données", "Technolog
 <BaseLayout>
   <header class="site-header">
     <div class="container nav">
-      <a class="brand" href="/" aria-label="KEU DIRU, accueil">
+      <a class="brand" href={base} aria-label="KEU DIRU, accueil">
         <span class="brand-mark">K</span>
         <span>KEU <strong>DIRU</strong><small>La connaissance en partage</small></span>
       </a>
@@ -31,7 +33,7 @@ const categories = ["Sciences & recherche", "Géomatique & données", "Technolog
           <p class="eyebrow">Bibliothèque ouverte · Savoirs partagés</p>
           <h1>Les bonnes ressources.<br /><em>Au bon endroit.</em></h1>
           <p class="hero-lead">Découvrez, organisez et partagez des connaissances pour apprendre, rechercher et créer — ensemble.</p>
-          <form class="search" action="/explorer" method="get" role="search">
+          <form class="search" action={`${base}explorer/`} method="get" role="search">
             <span aria-hidden="true">⌕</span>
             <label class="sr-only" for="q">Rechercher une ressource</label>
             <input id="q" name="q" type="search" placeholder="Que souhaitez-vous apprendre ?" />
@@ -58,7 +60,7 @@ const categories = ["Sciences & recherche", "Géomatique & données", "Technolog
       </div>
       <div class="category-grid">
         {categories.map((category, index) => (
-          <a class="category-card" href="/explorer">
+          <a class="category-card" href={`${base}explorer/`}>
             <span class="category-index">0{index + 1}</span>
             <span class="category-title">{category}</span>
             <span class="category-arrow" aria-hidden="true">↗</span>
@@ -92,7 +94,7 @@ const categories = ["Sciences & recherche", "Géomatique & données", "Technolog
 
   <footer class="footer">
     <div class="container footer-inner">
-      <a class="brand brand-footer" href="/"><span class="brand-mark">K</span><span>KEU <strong>DIRU</strong><small>La connaissance en partage</small></span></a>
+      <a class="brand brand-footer" href={base}><span class="brand-mark">K</span><span>KEU <strong>DIRU</strong><small>La connaissance en partage</small></span></a>
       <p>Une bibliothèque communautaire, ouverte et plurielle.</p>
       <span>© {new Date().getFullYear()} KEU DIRU</span>
     </div>
