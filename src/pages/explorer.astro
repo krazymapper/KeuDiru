@@ -17,7 +17,7 @@ const domains = ["Toutes les disciplines", ...new Set(resources.map((r) => r.dom
   <header class="topbar">
     <div class="container nav">
       <a class="brand" href={base}><span class="brand-mark">K</span><span>KEU <strong>DIRU</strong><small>La connaissance en partage</small></span></a>
-      <nav><a href={base}>Accueil</a><a class="active" href={`${base}explorer/`}>Explorer</a><a href="/#parcours">Parcours</a></nav>
+      <nav><a href={base}>Accueil</a><a class="active" href={`${base}explorer/`}>Explorer</a><a href={`${base}#parcours`}>Parcours</a></nav>
       <a class="back-home" href={base}>Retour à l'accueil ↗</a>
     </div>
   </header>
